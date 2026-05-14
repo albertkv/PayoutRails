@@ -1,0 +1,47 @@
+{
+  "name": "payoutrails-landing",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "clean": "node -e \"require('fs').rmSync('.next',{recursive:true,force:true})\"",
+    "predev": "npm run clean",
+    "dev": "next dev",
+    "prebuild": "npm run clean",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@mojs/core": "^0.288.2",
+    "@react-spring/web": "^9.7.5",
+    "@react-three/drei": "^9.114.3",
+    "@react-three/fiber": "^8.17.10",
+    "@splinetool/react-spline": "^4.0.0",
+    "@splinetool/runtime": "^1.9.48",
+    "animejs": "^3.2.2",
+    "clsx": "^2.1.1",
+    "framer-motion": "^11.11.9",
+    "gsap": "^3.12.5",
+    "lenis": "^1.1.17",
+    "lottie-react": "^2.4.0",
+    "next": "14.2.15",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "tailwind-merge": "^2.5.4",
+    "three": "^0.169.0",
+    "velocity-animate": "^2.0.6"
+  },
+  "devDependencies": {
+    "@types/animejs": "^3.1.12",
+    "@types/node": "^20.16.11",
+    "@types/react": "^18.3.11",
+    "@types/react-dom": "^18.3.1",
+    "@types/three": "^0.169.0",
+    "autoprefixer": "^10.4.20",
+    "eslint": "^8.57.1",
+    "eslint-config-next": "14.2.15",
+    "postcss": "^8.4.47",
+    "tailwindcss": "^3.4.14",
+    "typescript": "^5.6.3"
+  }
+}
