@@ -55,7 +55,13 @@ export default function Navbar() {
           ))}
         </ul>
 
-        <div className="hidden items-center gap-3 md:flex">
+        <div className="hidden items-center gap-4 md:flex">
+          <Link
+            href="/demo"
+            className="text-sm text-white/70 transition-colors hover:text-white"
+          >
+            Live Demo
+          </Link>
           <Link
             href="/documentation"
             className="text-sm text-white/70 transition-colors hover:text-white"
@@ -109,6 +115,15 @@ export default function Navbar() {
                   </a>
                 </li>
               ))}
+              <li>
+                <Link
+                  href="/demo"
+                  onClick={() => setOpen(false)}
+                  className="block rounded-lg px-3 py-2.5 text-sm text-white/70 hover:bg-white/5 hover:text-white"
+                >
+                  Live Demo
+                </Link>
+              </li>
               <li>
                 <Link
                   href="/documentation"

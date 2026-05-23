@@ -81,6 +81,12 @@ export default function Hero() {
             Read the Whitepaper
           </a>
           <Link
+            href="/demo"
+            className="inline-flex items-center gap-2 rounded-xl border border-aqua/40 bg-aqua/[0.06] px-7 py-3.5 text-sm font-semibold text-aqua-300 backdrop-blur transition-colors hover:border-aqua hover:text-white"
+          >
+            Try the Live Demo →
+          </Link>
+          <Link
             href="/documentation"
             className="inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/[0.03] px-7 py-3.5 text-sm font-semibold text-white/85 backdrop-blur transition-colors hover:border-iris/40 hover:text-white"
           >

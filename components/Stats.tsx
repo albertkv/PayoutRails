@@ -3,9 +3,13 @@
 import { useEffect, useRef } from "react";
 import { STATS } from "@/lib/content";
 
-// velocity.js tweens a counter for each stat once the band scrolls into view.
+// velocity.js drives the count-up timing/easing for each stat once the band
+// scrolls into view. We animate a dummy `tween` from 0 → 1 and read velocity's
+// reliable `percentComplete` value in the progress callback, multiplying it by
+// the real target — this avoids velocity v2's flaky `tweenValue` argument.
 function formatValue(v: number) {
-  if (v >= 1000) return v.toLocaleString("en-US");
+  if (!Number.isFinite(v)) return "0";
+  if (v >= 1000) return Math.round(v).toLocaleString("en-US");
   if (v < 1) return v.toString();
   return Math.round(v).toString();
 }
@@ -21,25 +25,26 @@ export default function Stats() {
       ([entry]) => {
         if (!entry.isIntersecting || played.current) return;
         played.current = true;
-        // velocity-animate touches `window` at import time — load it on demand.
+
         import("velocity-animate").then((mod) => {
-          const Velocity = mod.default;
+          const Velocity = (mod.default ?? mod) as (
+            ...args: unknown[]
+          ) => unknown;
+
           el.querySelectorAll<HTMLElement>("[data-target]").forEach((node) => {
             const target = Number(node.dataset.target);
+            node.textContent = "0";
             Velocity(
               node,
-              { tween: target },
+              { tween: [1, 0] },
               {
-                duration: 1800,
+                duration: 1900,
                 easing: "easeOutExpo",
-                progress: (
-                  _e: unknown,
-                  _c: number,
-                  _r: number,
-                  _s: number,
-                  tween: number,
-                ) => {
-                  node.textContent = formatValue(tween);
+                progress: (_els: unknown, percentComplete: number) => {
+                  node.textContent = formatValue(target * percentComplete);
+                },
+                complete: () => {
+                  node.textContent = formatValue(target);
                 },
               },
             );
